@@ -1,4 +1,5 @@
-import { Headphones, Mail, ExternalLink } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Headphones, Mail, ExternalLink, Trash2 } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -32,22 +33,42 @@ export default function Footer() {
               ))}
             </div>
           </div>
+
+          {/* App section links */}
           <div className="flex flex-col gap-3">
             <p className="text-[10px] font-semibold text-[#333] uppercase tracking-widest mb-1">App</p>
             {[['#features','Features'],['#how-it-works','How It Works'],['#screenshots','Screenshots'],['#faq','FAQ']].map(([href, label]) => (
               <a key={href} href={href} onClick={(e) => handleNav(e, href)} className="text-sm text-[#444] hover:text-[#888] transition-colors">{label}</a>
             ))}
           </div>
+
+          {/* Legal links — includes Data Deletion */}
           <div className="flex flex-col gap-3">
             <p className="text-[10px] font-semibold text-[#333] uppercase tracking-widest mb-1">Legal</p>
             <a href="#" className="text-sm text-[#444] hover:text-[#888] transition-colors flex items-center gap-1.5">Privacy Policy <ExternalLink size={10} /></a>
             <a href="#" className="text-sm text-[#444] hover:text-[#888] transition-colors flex items-center gap-1.5">Terms of Service <ExternalLink size={10} /></a>
+
+            {/* Data Deletion link — important for Play Store compliance */}
+            <Link
+              to="/delete-data"
+              className="text-sm text-[#444] hover:text-[#888] transition-colors flex items-center gap-1.5 mt-1 group"
+            >
+              <Trash2 size={11} className="text-[#3a3a3a] group-hover:text-[#666] transition-colors" strokeWidth={1.5} />
+              Request Data Deletion
+            </Link>
+
             <a href="mailto:hello@earwise.app" className="text-sm text-[#444] hover:text-[#888] transition-colors flex items-center gap-1.5 mt-1"><Mail size={12} />hello@earwise.app</a>
           </div>
         </div>
+
         <div className="pt-8 border-t border-[#131313] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[#333]">© {currentYear} Earwise. All rights reserved.</p>
-          <p className="text-xs text-[#2a2a2a]">Made with care for audio wellness.</p>
+          <div className="flex items-center gap-5">
+            <p className="text-xs text-[#2a2a2a]">Made with care for audio wellness.</p>
+            <Link to="/delete-data" className="text-xs text-[#2a2a2a] hover:text-[#444] transition-colors">
+              Data Deletion
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

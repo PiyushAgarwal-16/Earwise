@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Menu, X, Headphones } from 'lucide-react'
 
 const navLinks = [
@@ -36,16 +37,16 @@ export default function Navbar() {
     >
       <nav className="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a
-          href="#"
-          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+        <Link
+          to="/"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="flex items-center gap-2.5 group"
         >
           <div className="w-8 h-8 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center group-hover:bg-white/15 transition-all duration-200">
             <Headphones size={16} className="text-white/80" strokeWidth={1.5} />
           </div>
           <span className="font-semibold text-[#f5f5f5] text-base tracking-tight">Earwise</span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
